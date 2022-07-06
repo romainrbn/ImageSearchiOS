@@ -15,8 +15,23 @@ class ResultCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    lazy var selectedIndicator: UIImageView = {
+        let imageView = UIImageView(image: UIImage(systemName: "checkmark.circle"))
+        imageView.frame = .init(x: 0, y: 0, width: 30, height: 30)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    override var isSelected: Bool {
+        didSet {
+            selectedIndicator.isHidden = !isSelected
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.selectedIndicator.isHidden = true
         
         self.setupViews()
     }
@@ -32,12 +47,17 @@ class ResultCollectionViewCell: UICollectionViewCell {
         backgroundColor = UIColor.gray
         
         addSubview(resultImageView)
+        addSubview(selectedIndicator)
         
         NSLayoutConstraint.activate([
             resultImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
             resultImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             resultImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            resultImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+            resultImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+            
+            
+            selectedIndicator.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15),
+            selectedIndicator.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15)
         ])
     }
     

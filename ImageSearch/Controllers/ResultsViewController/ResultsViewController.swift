@@ -9,18 +9,55 @@ import UIKit
 
 class ResultsViewController: UICollectionViewController {
     
+    // Choses the mode (Selection or normal)
+    enum Mode {
+        case normal
+        case select
+    }
+    
     var queryText: String?
     
     let cellId = "cell"
     
     let imageSearchAPI = ImageSearchAPI.shared
-    
     var imagesURL: [String] = []
+    var fetchedImages: [UIImage] = []
+    var selectedItems: [UIImage] = []
+    
+    var mode: Mode = .normal {
+        didSet {
+            switch mode {
+            case .normal:
+                selectBarButtonItem.title = "Select"
+                navigationItem.leftBarButtonItem = nil
+                collectionView.allowsMultipleSelection = false
+            case .select:
+                selectBarButtonItem.title = "Show images"
+                navigationItem.leftBarButtonItem = cancelBarButtonItem
+                collectionView.allowsSelection = true
+                collectionView.allowsMultipleSelection = true
+            }
+        }
+    }
+    
+    lazy var selectBarButtonItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(selectButtonClicked))
+        return item
+    }()
+    
+    lazy var cancelBarButtonItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelButtonClicked))
+        return item
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.allowsSelection = false
                 
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.rightBarButtonItem = selectBarButtonItem
+        
         title = "Results"
         
         collectionView.register(ResultCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
@@ -52,9 +89,39 @@ class ResultsViewController: UICollectionViewController {
         return cell
     }
     
+    
     // Show the detail view
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+    }
+    
+    /// Handle the "Select" button action.
+    @objc
+    func selectButtonClicked() {
+        switch mode {
+        case .normal:
+            self.mode = .select
+        case .select:
+            
+            // We want to show the images only if the selected images is greater than 0
+            guard selectedItems.count > 0 else {
+                return
+            }
+            
+            let detailCollectionView = DetailCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+            detailCollectionView.selectedImages = selectedItems // change
+            self.navigationController?.pushViewController(DetailCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()), animated: true)
+        }
+    }
+    
+    /// Cancel the selection
+    @objc
+    func cancelButtonClicked() {
+        self.mode = .normal
     }
     
     /// Fetch the images from the service.

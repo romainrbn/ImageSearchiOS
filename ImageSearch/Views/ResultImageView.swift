@@ -21,4 +21,10 @@ class ResultImageView: UIImageView {
         
         task.resume()
     }
+    
+    func setImage(_ image: UIImage) {
+        DispatchQueue.main.async {
+            self.image = image
+        }
+    }
 }
