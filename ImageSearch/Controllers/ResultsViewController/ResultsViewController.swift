@@ -112,8 +112,8 @@ class ResultsViewController: UICollectionViewController {
             }
             
             let detailCollectionView = DetailCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
-            detailCollectionView.selectedImages = selectedItems // change
-            self.navigationController?.pushViewController(DetailCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()), animated: true)
+            detailCollectionView.selectedImages = selectedItems
+            self.navigationController?.pushViewController(detailCollectionView), animated: true)
         }
     }
     
