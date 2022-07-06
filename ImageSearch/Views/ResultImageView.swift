@@ -22,6 +22,7 @@ class ResultImageView: UIImageView {
         task.resume()
     }
     
+    // J'ai prévu une fonction (inutilisée ici) permettant de simplement charger une image dans l'ImageView
     func setImage(_ image: UIImage) {
         DispatchQueue.main.async {
             self.image = image

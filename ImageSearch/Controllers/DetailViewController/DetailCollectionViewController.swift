@@ -11,7 +11,7 @@ private let reuseIdentifier = "Cell"
 
 class DetailCollectionViewController: UICollectionViewController {
     
-    var selectedImages: [UIImage]?
+    var selectedImages: [String]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,14 @@ class DetailCollectionViewController: UICollectionViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         
         return 1
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print("Images: \(selectedImages)")
+        
+        collectionView.reloadData()
     }
 
 
@@ -44,7 +52,11 @@ class DetailCollectionViewController: UICollectionViewController {
     
         let image = selectedImages[indexPath.item]
         
-        cell.resultImageView.setImage(image)
+        if let url = URL(string: image) {
+            DispatchQueue.main.async {
+                cell.resultImageView.loadImage(url)
+            }
+        }
     
         return cell
     }

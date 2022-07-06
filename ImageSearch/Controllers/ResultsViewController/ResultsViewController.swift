@@ -21,8 +21,7 @@ class ResultsViewController: UICollectionViewController {
     
     let imageSearchAPI = ImageSearchAPI.shared
     var imagesURL: [String] = []
-    var fetchedImages: [UIImage] = []
-    var selectedItems: [UIImage] = []
+    var selectedItems: [String] = []
     
     var mode: Mode = .normal {
         didSet {
@@ -68,7 +67,6 @@ class ResultsViewController: UICollectionViewController {
         }
     }
     
-    
     // MARK: - UICollectionViewDataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -89,14 +87,15 @@ class ResultsViewController: UICollectionViewController {
         return cell
     }
     
-    
-    // Show the detail view
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        // Il aurait été largement mieux de passer les images plutôt que les URL, évitant ainsi de devoir retélécharger l'image une nouvelle fois... J'ai préféré faire en sorte que ça fonctionne par manque de temps
+        selectedItems.append(imagesURL[indexPath.item])
     }
     
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        
+        if let element = selectedItems.firstIndex(of: imagesURL[indexPath.item]) {
+            selectedItems.remove(at: element)
+        }
     }
     
     /// Handle the "Select" button action.
