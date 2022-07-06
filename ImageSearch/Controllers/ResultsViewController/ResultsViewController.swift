@@ -21,7 +21,7 @@ class ResultsViewController: UICollectionViewController {
     
     let imageSearchAPI = ImageSearchAPI.shared
     var imagesURL: [String] = []
-    var selectedItems: [String] = []
+    var selectedItems: [UIImage] = []
     
     var mode: Mode = .normal {
         didSet {
@@ -88,12 +88,16 @@ class ResultsViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Il aurait été largement mieux de passer les images plutôt que les URL, évitant ainsi de devoir retélécharger l'image une nouvelle fois...
-        selectedItems.append(imagesURL[indexPath.item])
+        let cell = collectionView.cellForItem(at: indexPath) as! ResultCollectionViewCell
+        if let image = cell.resultImageView.image {
+            selectedItems.append(image)
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if let element = selectedItems.firstIndex(of: imagesURL[indexPath.item]) {
+        let cell = collectionView.cellForItem(at: indexPath) as! ResultCollectionViewCell
+        
+        if let image = cell.resultImageView.image, let element = selectedItems.firstIndex(of: image) {
             selectedItems.remove(at: element)
         }
     }
