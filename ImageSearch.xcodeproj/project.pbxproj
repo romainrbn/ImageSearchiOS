@@ -20,6 +20,9 @@
 		7E3CD9B328760B4C00AA5E8A /* ImageSearchViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3CD9B228760B4C00AA5E8A /* ImageSearchViewController+Extensions.swift */; };
 		7E3CD9B728760DEC00AA5E8A /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3CD9B628760DEC00AA5E8A /* ResultsViewController.swift */; };
 		7E3CD9BB2876105E00AA5E8A /* UIViewController+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3CD9BA2876105E00AA5E8A /* UIViewController+Helper.swift */; };
+		7E3CD9BD2876138E00AA5E8A /* ResultsViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3CD9BC2876138E00AA5E8A /* ResultsViewController+Extensions.swift */; };
+		7E3CD9C02876193900AA5E8A /* ResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3CD9BF2876193900AA5E8A /* ResultCollectionViewCell.swift */; };
+		7E3CD9C22876197500AA5E8A /* ResultImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3CD9C12876197500AA5E8A /* ResultImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		7E3CD9B228760B4C00AA5E8A /* ImageSearchViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageSearchViewController+Extensions.swift"; sourceTree = "<group>"; };
 		7E3CD9B628760DEC00AA5E8A /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		7E3CD9BA2876105E00AA5E8A /* UIViewController+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helper.swift"; sourceTree = "<group>"; };
+		7E3CD9BC2876138E00AA5E8A /* ResultsViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultsViewController+Extensions.swift"; sourceTree = "<group>"; };
+		7E3CD9BF2876193900AA5E8A /* ResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCollectionViewCell.swift; sourceTree = "<group>"; };
+		7E3CD9C12876197500AA5E8A /* ResultImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +81,8 @@
 				7E3CD9AC287601D200AA5E8A /* Helpers */,
 				7E3CD9A22875FB0A00AA5E8A /* Service */,
 				7E3CD9A7287600D200AA5E8A /* Model */,
-				7E3CD9A12875FAFE00AA5E8A /* ViewControllers */,
+				7E3CD9BE2876192200AA5E8A /* Views */,
+				7E3CD9A12875FAFE00AA5E8A /* Controllers */,
 				7E3CD9962875F99D00AA5E8A /* Assets.xcassets */,
 				7E3CD9982875F99D00AA5E8A /* LaunchScreen.storyboard */,
 				7E3CD99B2875F99D00AA5E8A /* Info.plist */,
@@ -83,13 +90,13 @@
 			path = ImageSearch;
 			sourceTree = "<group>";
 		};
-		7E3CD9A12875FAFE00AA5E8A /* ViewControllers */ = {
+		7E3CD9A12875FAFE00AA5E8A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				7E3CD9B428760DD400AA5E8A /* ImageSearchViewController */,
 				7E3CD9B528760DDB00AA5E8A /* ResultsViewController */,
 			);
-			path = ViewControllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		7E3CD9A22875FB0A00AA5E8A /* Service */ = {
@@ -132,8 +139,18 @@
 			isa = PBXGroup;
 			children = (
 				7E3CD9B628760DEC00AA5E8A /* ResultsViewController.swift */,
+				7E3CD9BC2876138E00AA5E8A /* ResultsViewController+Extensions.swift */,
 			);
 			path = ResultsViewController;
+			sourceTree = "<group>";
+		};
+		7E3CD9BE2876192200AA5E8A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7E3CD9BF2876193900AA5E8A /* ResultCollectionViewCell.swift */,
+				7E3CD9C12876197500AA5E8A /* ResultImageView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,15 +224,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E3CD9A9287600F000AA5E8A /* ImageSearchResult.swift in Sources */,
+				7E3CD9BD2876138E00AA5E8A /* ResultsViewController+Extensions.swift in Sources */,
 				7E3CD9922875F99800AA5E8A /* ImageSearchViewController.swift in Sources */,
 				7E3CD9A62875FBED00AA5E8A /* Secret.swift in Sources */,
 				7E3CD9B728760DEC00AA5E8A /* ResultsViewController.swift in Sources */,
 				7E3CD9BB2876105E00AA5E8A /* UIViewController+Helper.swift in Sources */,
 				7E3CD9B328760B4C00AA5E8A /* ImageSearchViewController+Extensions.swift in Sources */,
+				7E3CD9C22876197500AA5E8A /* ResultImageView.swift in Sources */,
 				7E3CD9AE287601F600AA5E8A /* URLSession+Decoder.swift in Sources */,
 				7E3CD98E2875F99800AA5E8A /* AppDelegate.swift in Sources */,
 				7E3CD9AB287600F700AA5E8A /* ImageSearchHit.swift in Sources */,
 				7E3CD9A42875FB1C00AA5E8A /* ImageSearchAPI.swift in Sources */,
+				7E3CD9C02876193900AA5E8A /* ResultCollectionViewCell.swift in Sources */,
 				7E3CD9902875F99800AA5E8A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

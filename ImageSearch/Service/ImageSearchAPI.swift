@@ -48,6 +48,7 @@ class ImageSearchAPI: NSObject {
             URLQueryItem(name: "key", value: apiKey),
             URLQueryItem(name: "q", value: userQuery),
             URLQueryItem(name: "image_type", value: "photo")
+            // According to the API documentation, the default "per_page" parameter is 20, which seems to be an acceptable number (we want to avoid huge requests)
         ]
         
         return components.url

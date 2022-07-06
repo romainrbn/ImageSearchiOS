@@ -9,8 +9,6 @@ import UIKit
 
 class ImageSearchViewController: UIViewController {
     
-    let imageSearchAPI = ImageSearchAPI.shared
-    
     lazy var searchField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Search for images..."
@@ -48,8 +46,6 @@ class ImageSearchViewController: UIViewController {
                                                object: nil)
         
         self.configureView()
-        
-        
     }
     
     /// Configures the UI layout.
@@ -84,17 +80,8 @@ class ImageSearchViewController: UIViewController {
         guard let queryText = searchField.text else {
             return
         }
-        
-        Task {
-            if let urls = await imageSearchAPI.getImagesFromServer(with: queryText) {
-                let resultsViewController = ResultsViewController()
-                resultsViewController.resultsURL = urls
-                self.navigationController?.pushViewController(resultsViewController, animated: true)
-            } else {
-                // For larger projects, we could create an error enum, with a localized description for each type of error.
-                self.createAlert(title: "Error",
-                                 message: "Could not proceed with the request. Check your internet connection and try again.")
-            }
-        }
+        let resultsViewController = ResultsViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        resultsViewController.queryText = queryText
+        self.navigationController?.pushViewController(resultsViewController, animated: true)
     }
 }
