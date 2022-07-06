@@ -113,7 +113,7 @@ class ResultsViewController: UICollectionViewController {
             
             let detailCollectionView = DetailCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
             detailCollectionView.selectedImages = selectedItems
-            self.navigationController?.pushViewController(detailCollectionView), animated: true)
+            self.navigationController?.pushViewController(detailCollectionView, animated: true)
         }
     }
     
