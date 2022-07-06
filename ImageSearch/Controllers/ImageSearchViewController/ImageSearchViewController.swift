@@ -35,16 +35,6 @@ class ImageSearchViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         title = "Search images 🔍"
         
-        // Register for keyboard notifications, to move the view accordingly
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-        
         self.configureView()
     }
     
