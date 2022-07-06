@@ -88,7 +88,7 @@ class ResultsViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Il aurait été largement mieux de passer les images plutôt que les URL, évitant ainsi de devoir retélécharger l'image une nouvelle fois... J'ai préféré faire en sorte que ça fonctionne par manque de temps
+        // Il aurait été largement mieux de passer les images plutôt que les URL, évitant ainsi de devoir retélécharger l'image une nouvelle fois...
         selectedItems.append(imagesURL[indexPath.item])
     }
     
@@ -133,7 +133,6 @@ class ResultsViewController: UICollectionViewController {
             if let urls = await imageSearchAPI.getImagesFromServer(with: queryText) {
                 // Update the UI when the image urls are fetched.
                 DispatchQueue.main.async { [weak self] in
-                    print("URLs fetched!: \(urls)")
                     self?.imagesURL = urls
                     self?.collectionView.reloadData()
                 }
