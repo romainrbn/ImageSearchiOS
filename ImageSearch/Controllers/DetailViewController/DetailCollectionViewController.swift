@@ -28,8 +28,6 @@ class DetailCollectionViewController: UICollectionViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("Images: \(selectedImages)")
-        
         collectionView.reloadData()
     }
 
