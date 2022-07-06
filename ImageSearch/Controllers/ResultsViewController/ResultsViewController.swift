@@ -25,7 +25,10 @@ class ResultsViewController: UICollectionViewController {
         
         collectionView.register(ResultCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         
-        self.fetchImages()
+        Task {
+            await self.fetchImages()
+            self.collectionView.reloadData()
+        }
     }
     
     
@@ -42,9 +45,8 @@ class ResultsViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ResultCollectionViewCell
         
         if let url = URL(string: imagesURL[indexPath.item]) {
-            DispatchQueue.main.async { [weak self] in
+            DispatchQueue.main.async {
                 cell.resultImageView.loadImage(url)
-                self?.collectionView.reloadData()
             }
         }
         return cell
@@ -56,7 +58,7 @@ class ResultsViewController: UICollectionViewController {
     }
     
     /// Fetch the images from the service.
-    private func fetchImages() {
+    private func fetchImages() async {
         guard let queryText = queryText else {
             return
         }
@@ -77,21 +79,5 @@ class ResultsViewController: UICollectionViewController {
                 }
             }
         }
-    }
-    
-    private func createLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2),
-                                             heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .fractionalWidth(0.2))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                         subitems: [item])
-
-        let section = NSCollectionLayoutSection(group: group)
-
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
     }
 }

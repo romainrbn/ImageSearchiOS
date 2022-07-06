@@ -21,6 +21,12 @@ class ResultCollectionViewCell: UICollectionViewCell {
         self.setupViews()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        resultImageView.image = nil
+    }
+    
     /// Setup the views in the collection view cell.
     private func setupViews() {
         backgroundColor = UIColor.gray

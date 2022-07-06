@@ -6,6 +6,11 @@
 //
 
 import Foundation
+import UIKit
+
+enum Section {
+    case mainSection
+}
 
 /// A hit returned by the query, representing the data of an image
 struct ImageSearchHit: Decodable {

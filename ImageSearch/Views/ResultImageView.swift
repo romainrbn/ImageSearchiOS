@@ -14,7 +14,9 @@ class ResultImageView: UIImageView {
                 return
             }
             
-            self.image = image
+            DispatchQueue.main.async {
+                self.image = image
+            }
         }
         
         task.resume()
