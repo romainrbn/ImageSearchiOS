@@ -29,7 +29,7 @@ class ResultsViewController: UICollectionViewController {
             case .normal:
                 selectBarButtonItem.title = "Select"
                 navigationItem.leftBarButtonItem = nil
-                collectionView.allowsMultipleSelection = false
+                collectionView.allowsSelection = false
             case .select:
                 selectBarButtonItem.title = "Show images"
                 navigationItem.leftBarButtonItem = cancelBarButtonItem
@@ -111,7 +111,10 @@ class ResultsViewController: UICollectionViewController {
         case .select:
             
             // We want to show the images only if the selected images is greater than 0
-            guard selectedItems.count > 0 else {
+            guard selectedItems.count > 1 else {
+                
+                self.createAlert(title: "Erreur", message: "Please select at least 2 images.")
+                
                 return
             }
             
@@ -125,6 +128,7 @@ class ResultsViewController: UICollectionViewController {
     @objc
     func cancelButtonClicked() {
         self.mode = .normal
+        self.selectedItems.removeAll()
     }
     
     /// Fetch the images from the service.
